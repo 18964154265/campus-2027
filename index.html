@@ -3,24 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2027届秋招情报站 · 产品/运营方向</title>
+  <title>2027届秋招发车榜 · 产品/运营方向</title>
+  <meta name="description" content="2027届秋季校园招聘时刻表：互联网大厂、500强外企、新能源车企的开启时间、截止日期与官方投递直达，聚焦上海、深圳、香港。">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
+
+  <!-- 签名元素：秋招发车榜（车站时刻表） -->
+  <header class="board">
     <div class="container">
-      <h1>🎯 2027届秋招情报站</h1>
-      <p class="subtitle">产品 / 运营方向 · 聚焦上海、深圳、香港 · 数据每日更新</p>
-      <p class="updated">最后更新：<span id="lastUpdated">加载中…</span></p>
+      <div class="board-top">
+        <div>
+          <p class="board-eyebrow">CAMPUS 2027 · 产品 / 运营</p>
+          <h1>秋招发车榜</h1>
+          <p class="board-sub">错过一班，等一年。上海 · 深圳 · 香港</p>
+        </div>
+        <div class="board-clock">
+          <span class="clock-label">数据更新于</span>
+          <span class="clock-time" id="lastUpdated">— — —</span>
+        </div>
+      </div>
+
+      <div class="departures" id="departures" aria-label="正在检票的招聘批次">
+        <div class="dep-head" aria-hidden="true">
+          <span>车次 / 公司</span><span>批次</span><span>检票状态</span><span>截止</span><span></span>
+        </div>
+        <!-- JS 渲染：正在检票（已开启）的公司行 -->
+      </div>
+      <p class="board-note" id="notice"></p>
     </div>
   </header>
 
   <nav class="tabs container" id="tabs">
-    <button class="tab active" data-tab="companies">📋 公司名单</button>
-    <button class="tab" data-tab="timeline">🗓️ 秋招时间线</button>
-    <button class="tab" data-tab="compare">📊 对比表格</button>
-    <button class="tab" data-tab="windows">⏰ 投递窗口建议</button>
-    <button class="tab" data-tab="city">🏙️ 城市机会</button>
+    <button class="tab active" data-tab="companies">公司名单</button>
+    <button class="tab" data-tab="timeline">秋招时刻表</button>
+    <button class="tab" data-tab="compare">对比总表</button>
+    <button class="tab" data-tab="windows">投递窗口</button>
+    <button class="tab" data-tab="city">城市站台</button>
   </nav>
 
   <main class="container">
@@ -30,7 +49,7 @@
         <div class="filter-group" id="categoryFilters">
           <button class="chip active" data-cat="all">全部</button>
           <button class="chip" data-cat="互联网大厂">互联网大厂</button>
-          <button class="chip" data-cat="世界500强外企">世界500强外企</button>
+          <button class="chip" data-cat="世界500强外企">500强外企</button>
           <button class="chip" data-cat="新能源车企">新能源车企</button>
         </div>
         <div class="filter-group" id="cityFilters">
@@ -39,9 +58,8 @@
           <button class="chip city" data-city="深圳">深圳</button>
           <button class="chip city" data-city="香港">香港</button>
         </div>
-        <input type="search" id="searchBox" placeholder="🔍 搜索公司名…">
+        <input type="search" id="searchBox" placeholder="搜索公司名…" aria-label="搜索公司名">
       </div>
-      <p class="notice" id="notice"></p>
       <div id="companyList" class="card-grid"></div>
     </section>
 
@@ -52,12 +70,13 @@
 
     <!-- 对比表格 -->
     <section id="panel-compare" class="panel">
+      <p class="table-hint">点击任意一行，前往该公司官方投递页。</p>
       <div class="table-wrap">
         <table id="compareTable">
           <thead>
             <tr>
               <th>公司</th><th>类别</th><th>状态</th><th>开启时间</th>
-              <th>截止时间</th><th>投递渠道</th><th>薪资范围</th><th>城市</th>
+              <th>截止时间</th><th>薪资范围</th><th>城市</th><th>投递</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -78,7 +97,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>数据由 WorkBuddy 每日自动调研更新 · 信息仅供参考，投递前请以各公司官方招聘网站为准</p>
+      <p>数据每日自动调研更新 · 信息仅供参考，投递前请以各公司官方招聘网站为准</p>
     </div>
   </footer>
 
