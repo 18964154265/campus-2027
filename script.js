@@ -1,4 +1,4 @@
-/* 2027届秋招情报站 - 前端逻辑（原生 JS，无依赖） */
+/* 2027届秋招发车榜 - 前端逻辑（原生 JS，无依赖） */
 (function () {
   let DATA = null;
   let filters = { cat: "all", city: "all", keyword: "" };
@@ -8,8 +8,9 @@
     .then(function (res) { return res.json(); })
     .then(function (json) {
       DATA = json;
-      document.getElementById("lastUpdated").textContent = json.lastUpdated + "（" + json.classYear + "）";
+      document.getElementById("lastUpdated").textContent = json.lastUpdated;
       document.getElementById("notice").textContent = json.notice || "";
+      renderDepartures();
       renderCompanies();
       renderTimeline();
       renderTable();
@@ -17,7 +18,7 @@
       renderCity();
     })
     .catch(function (err) {
-      document.getElementById("lastUpdated").textContent = "数据加载失败";
+      document.getElementById("lastUpdated").textContent = "加载失败";
       console.error(err);
     });
 
@@ -55,7 +56,7 @@
     renderCompanies();
   });
 
-  // ---------- 状态样式 ----------
+  // ---------- 工具 ----------
   function statusClass(status) {
     if (status.indexOf("已开启") >= 0 || status.indexOf("开放中") >= 0) return "open";
     if (status.indexOf("滚动") >= 0) return "rolling";
@@ -68,7 +69,31 @@
     });
   }
 
-  // ---------- 公司卡片 ----------
+  function safeUrl(u) {
+    return u && /^https:\/\//.test(u) ? u : "";
+  }
+
+  // ---------- 签名元素：发车榜（仅显示已开启/滚动开放的批次） ----------
+  function renderDepartures() {
+    var open = DATA.companies.filter(function (c) {
+      return statusClass(c.status) !== "soon";
+    });
+    var html = open.map(function (c) {
+      var url = safeUrl(c.channelUrl);
+      return (
+        '<a class="dep-row" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' +
+          '<span class="dep-name">' + esc(c.name) + "</span>" +
+          '<span class="dep-batch">' + esc(c.batch) + "</span>" +
+          '<span class="dep-status">正在检票</span>' +
+          '<span class="dep-deadline">' + esc(c.deadline) + "</span>" +
+          '<span class="dep-go">去投递 →</span>' +
+        "</a>"
+      );
+    }).join("");
+    document.getElementById("departures").insertAdjacentHTML("beforeend", html);
+  }
+
+  // ---------- 公司卡片（整卡可点击，跳官方投递页） ----------
   function renderCompanies() {
     if (!DATA) return;
     var list = DATA.companies.filter(function (c) {
@@ -79,33 +104,36 @@
     });
 
     var html = list.map(function (c) {
+      var url = safeUrl(c.channelUrl);
       var cityTags = c.cities.map(function (city) {
         var hot = ["上海", "深圳", "香港"].some(function (k) { return city.indexOf(k) >= 0; });
         return '<span class="city-tag' + (hot ? " hot" : "") + '">' + esc(city) + "</span>";
       }).join("");
       return (
-        '<article class="company-card">' +
+        '<a class="company-card" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer" ' +
+          'aria-label="' + esc(c.name) + '：前往官方投递页">' +
           '<div class="card-head"><h3>' + esc(c.name) + '</h3>' +
           '<span class="badge cat-' + esc(c.category) + '">' + esc(c.category) + "</span></div>" +
-          '<span class="status ' + statusClass(c.status) + '">● ' + esc(c.status) + "</span>" +
+          '<span class="status ' + statusClass(c.status) + '">' + esc(c.status) + "</span>" +
           "<dl>" +
-            "<dt>📅 开启时间</dt><dd>" + esc(c.openDate) + "</dd>" +
-            "<dt>⏳ 截止时间</dt><dd>" + esc(c.deadline) + "</dd>" +
-            "<dt>🔗 投递渠道</dt><dd>" + esc(c.channel) + "</dd>" +
-            "<dt>💼 产品/运营岗位</dt><dd>" + esc(c.positions) + "</dd>" +
-            "<dt>📈 需求量</dt><dd>" + esc(c.demand) + "</dd>" +
-            "<dt>🛠️ 能力要求</dt><dd>" + esc(c.skills) + "</dd>" +
-            "<dt>💰 薪资范围</dt><dd>" + esc(c.salary) + "</dd>" +
-            "<dt>🧭 笔试/面试流程</dt><dd>" + esc(c.process) + "</dd>" +
+            "<dt>开启时间</dt><dd class=\"mono\">" + esc(c.openDate) + "</dd>" +
+            "<dt>截止时间</dt><dd class=\"mono\">" + esc(c.deadline) + "</dd>" +
+            "<dt>投递渠道</dt><dd>" + esc(c.channel) + "</dd>" +
+            "<dt>产品/运营岗位</dt><dd>" + esc(c.positions) + "</dd>" +
+            "<dt>需求量</dt><dd>" + esc(c.demand) + "</dd>" +
+            "<dt>能力要求</dt><dd>" + esc(c.skills) + "</dd>" +
+            "<dt>薪资范围</dt><dd>" + esc(c.salary) + "</dd>" +
+            "<dt>笔试/面试流程</dt><dd>" + esc(c.process) + "</dd>" +
           "</dl>" +
           '<div class="city-tags">' + cityTags + "</div>" +
-          '<p class="tips">💡 ' + esc(c.tips) + "</p>" +
-        "</article>"
+          '<p class="tips">' + esc(c.tips) + "</p>" +
+          '<div class="card-cta"><span>去官方投递 →</span></div>' +
+        "</a>"
       );
     }).join("");
 
     document.getElementById("companyList").innerHTML =
-      html || '<p style="color:#6b7280">没有符合筛选条件的公司。</p>';
+      html || '<p style="color:#66727E">没有符合筛选条件的公司。</p>';
   }
 
   // ---------- 时间线 ----------
@@ -121,23 +149,38 @@
     }).join("");
   }
 
-  // ---------- 对比表格 ----------
+  // ---------- 对比表格（整行可点击） ----------
   function renderTable() {
     var tbody = document.querySelector("#compareTable tbody");
-    tbody.innerHTML = DATA.companies.map(function (c) {
+    tbody.innerHTML = DATA.companies.map(function (c, i) {
       return (
-        "<tr>" +
+        '<tr data-idx="' + i + '" tabindex="0" role="link" aria-label="' + esc(c.name) + '：前往官方投递页">' +
           "<td>" + esc(c.name) + "</td>" +
           "<td>" + esc(c.category) + "</td>" +
           '<td><span class="status ' + statusClass(c.status) + '">' + esc(c.status) + "</span></td>" +
-          "<td>" + esc(c.openDate) + "</td>" +
-          "<td>" + esc(c.deadline) + "</td>" +
-          "<td>" + esc(c.channel) + "</td>" +
+          '<td class="mono">' + esc(c.openDate) + "</td>" +
+          '<td class="mono">' + esc(c.deadline) + "</td>" +
           "<td>" + esc(c.salary) + "</td>" +
           "<td>" + esc(c.cities.join("、")) + "</td>" +
+          '<td><span class="row-go">去投递 →</span></td>' +
         "</tr>"
       );
     }).join("");
+
+    function go(tr) {
+      var c = DATA.companies[Number(tr.dataset.idx)];
+      var url = c && safeUrl(c.channelUrl);
+      if (url) window.open(url, "_blank", "noopener");
+    }
+    tbody.addEventListener("click", function (e) {
+      var tr = e.target.closest("tr[data-idx]");
+      if (tr) go(tr);
+    });
+    tbody.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter") return;
+      var tr = e.target.closest("tr[data-idx]");
+      if (tr) go(tr);
+    });
   }
 
   // ---------- 投递窗口 ----------
@@ -147,12 +190,11 @@
     }).join("");
   }
 
-  // ---------- 城市机会 ----------
+  // ---------- 城市站台 ----------
   function renderCity() {
-    var icons = { "上海": "🌃", "深圳": "🌆", "香港": "🏙️" };
     var html = "";
     for (var city in DATA.cityFocus) {
-      html += '<div class="city-card"><h3>' + (icons[city] || "📍") + " " + esc(city) +
+      html += '<div class="city-card"><h3>' + esc(city) +
               "</h3><p>" + esc(DATA.cityFocus[city]) + "</p></div>";
     }
     document.getElementById("cityList").innerHTML = html;
