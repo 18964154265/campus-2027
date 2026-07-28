@@ -33,7 +33,100 @@
           "label": "运营岗直投",
           "url": "https://jobs.bytedance.com/campus/position?keywords=%E8%BF%90%E8%90%A5"
         }
-      ]
+      ],
+      "jobCategories": [
+        {
+          "name": "商家/用户运营",
+          "jobs": [
+            {
+              "title": "商家运营实习生-TikTok Shop",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7648662438347950341/detail"
+            },
+            {
+              "title": "巴西商家运营实习生-TikTok Shop",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7659078288090417461/detail"
+            },
+            {
+              "title": "服饰鞋包商家运营实习生-TikTok Shop",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7642662750936500485/detail"
+            },
+            {
+              "title": "欧日跨境商家运营实习生-TikTok Shop",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7616615557756471557/detail"
+            },
+            {
+              "title": "消费电子行业商家运营实习生 - TikTok Shop",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7665641098127984901/detail"
+            }
+          ]
+        },
+        {
+          "name": "产品/策略运营",
+          "jobs": [
+            {
+              "title": "行业运营（彩妆）实习生 - 抖音电商运营",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7667086452886866229/detail"
+            },
+            {
+              "title": "行业运营（美妆）实习生 - 抖音电商运营",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7665606049990265093/detail"
+            },
+            {
+              "title": "行业运营（家清日用）实习生-抖音电商",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7662321923616213301/detail"
+            },
+            {
+              "title": "行业运营（时尚行业）实习生 - 抖音电商运营",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7665262187787864325/detail"
+            },
+            {
+              "title": "行业运营（跨境美妆）实习生 - 抖音电商运营",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7665547521774913845/detail"
+            }
+          ]
+        },
+        {
+          "name": "内容运营",
+          "jobs": [
+            {
+              "title": "跨境电商内容运营实习生 - TikTok Shop",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7662659001915640069/detail"
+            },
+            {
+              "title": "UGC运营实习生-抖音生活服务",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7615166213271259397/detail"
+            },
+            {
+              "title": "UGC产品运营实习生-抖音",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7519757111727786248/detail"
+            },
+            {
+              "title": "AI短剧内容运营实习生-TikTok",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7660787525902027013/detail"
+            },
+            {
+              "title": "新媒体运营实习生-抖音生活服务",
+              "city": "上海",
+              "url": "https://jobs.bytedance.com/campus/position/7611829189332109621/detail"
+            }
+          ]
+        }
+      ],
+      "jobsFetchedAt": "2026-07-28"
     },
     {
       "name": "腾讯",
@@ -65,7 +158,48 @@
           "label": "运营岗直投",
           "url": "https://join.qq.com/post.html?keyword=%E8%BF%90%E8%90%A5"
         }
-      ]
+      ],
+      "jobCategories": [
+        {
+          "name": "商家/用户运营",
+          "jobs": []
+        },
+        {
+          "name": "产品/策略运营",
+          "jobs": [
+            {
+              "title": "游戏发行/运营培训生（应届实习）",
+              "city": "上海",
+              "url": "https://join.qq.com/post_detail.html?pid=2&id=21517&tid=3"
+            },
+            {
+              "title": "游戏发行/运营培训生（应届毕业生）",
+              "city": "上海",
+              "url": "https://join.qq.com/post_detail.html?pid=1&id=21277&tid=3"
+            },
+            {
+              "title": "游戏发行/运营培训生（日常实习）",
+              "city": "上海",
+              "url": "https://join.qq.com/post_detail.html?pid=4&id=21627&tid=3"
+            },
+            {
+              "title": "产品运营（应届实习）",
+              "city": "上海",
+              "url": "https://join.qq.com/post_detail.html?pid=2&id=21498&tid=3"
+            },
+            {
+              "title": "产品运营（日常实习）",
+              "city": "上海",
+              "url": "https://join.qq.com/post_detail.html?pid=4&id=21512&tid=3"
+            }
+          ]
+        },
+        {
+          "name": "内容运营",
+          "jobs": []
+        }
+      ],
+      "jobsFetchedAt": "2026-07-28"
     },
     {
       "name": "阿里巴巴",
@@ -488,7 +622,49 @@
           "label": "运营岗直投",
           "url": "https://nio.jobs.feishu.cn/campus/?keywords=%E8%BF%90%E8%90%A5"
         }
-      ]
+      ],
+      "jobCategories": [
+        {
+          "name": "商家/用户运营",
+          "jobs": []
+        },
+        {
+          "name": "产品/策略运营",
+          "jobs": [
+            {
+              "title": "提前批-营销域AI产品运营",
+              "city": "上海",
+              "url": "https://nio.jobs.feishu.cn/campus/position/7664921547162061097/detail"
+            },
+            {
+              "title": "提前批-APP产品运营",
+              "city": "上海",
+              "url": "https://nio.jobs.feishu.cn/campus/position/7661853832809695530/detail"
+            },
+            {
+              "title": "提前批-AI产品运营",
+              "city": "上海",
+              "url": "https://nio.jobs.feishu.cn/campus/position/7661853874508548371/detail"
+            },
+            {
+              "title": "提前批-业务运营支持",
+              "city": "上海",
+              "url": "https://nio.jobs.feishu.cn/campus/position/7664923581545515273/detail"
+            }
+          ]
+        },
+        {
+          "name": "内容运营",
+          "jobs": [
+            {
+              "title": "实习-雇主品牌实习生（新媒体运营方向）",
+              "city": "上海",
+              "url": "https://nio.jobs.feishu.cn/campus/position/7665184012339513651/detail"
+            }
+          ]
+        }
+      ],
+      "jobsFetchedAt": "2026-07-28"
     },
     {
       "name": "理想汽车",
@@ -549,7 +725,28 @@
           "label": "运营岗直投",
           "url": "https://xiaopeng.jobs.feishu.cn/campus/?keywords=%E8%BF%90%E8%90%A5"
         }
-      ]
+      ],
+      "jobCategories": [
+        {
+          "name": "商家/用户运营",
+          "jobs": []
+        },
+        {
+          "name": "产品/策略运营",
+          "jobs": [
+            {
+              "title": "【27届暑期】前瞻技术运营实习生",
+              "city": "上海",
+              "url": "https://xiaopeng.jobs.feishu.cn/campus/position/7634172834730248484/detail"
+            }
+          ]
+        },
+        {
+          "name": "内容运营",
+          "jobs": []
+        }
+      ],
+      "jobsFetchedAt": "2026-07-28"
     },
     {
       "name": "特斯拉 Tesla",
