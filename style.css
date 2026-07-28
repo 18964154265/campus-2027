@@ -197,6 +197,7 @@ button { font-family: inherit; }
 .company-card {
   position: relative;
   display: block;
+  cursor: pointer;
   text-decoration: none;
   color: var(--text);
   background: var(--card);
@@ -401,3 +402,41 @@ td.mono { font-family: var(--mono); font-size: .78rem; }
   .card-grid { grid-template-columns: 1fr; }
   .board-clock { text-align: left; }
 }
+
+/* ============ 岗位直投链接（票签造型） ============ */
+.job-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.job-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 12px;
+  font-family: var(--mono);
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--go);
+  background: rgba(0, 168, 104, .08);
+  border: 1px dashed var(--go);
+  border-radius: 3px;
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+  transition: background .15s, color .15s;
+}
+.job-link:nth-child(2) {
+  color: var(--wait);
+  background: rgba(232, 147, 12, .08);
+  border-color: var(--wait);
+}
+.job-link:hover { background: var(--go); color: #fff; }
+.job-link:nth-child(2):hover { background: var(--wait); color: #fff; }
+.job-link.sm {
+  padding: 1px 8px;
+  font-size: .72rem;
+  margin-left: 6px;
+}
+.td-go { white-space: nowrap; }
