@@ -23,7 +23,17 @@
         "香港（TikTok 相关岗位）"
       ],
       "tips": "AI 产品经理早鸟通道 8 月 2 日截止，意向者务必本周内投递；提前批不占正式批投递机会，AI 产品方向是最大增量。",
-      "channelUrl": "https://jobs.bytedance.com/campus"
+      "channelUrl": "https://jobs.bytedance.com/campus",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://jobs.bytedance.com/campus/position?keywords=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://jobs.bytedance.com/campus/position?keywords=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "腾讯",
@@ -45,7 +55,17 @@
         "香港（金融科技/海外业务少量）"
       ],
       "tips": "深圳岗位量远大于其他城市；简历一次投递可流转多部门，第一志愿填写需谨慎。",
-      "channelUrl": "https://join.qq.com"
+      "channelUrl": "https://join.qq.com",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://join.qq.com/post.html?keyword=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://join.qq.com/post.html?keyword=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "阿里巴巴",
@@ -67,7 +87,17 @@
         "香港（国际站/Lazada 少量）"
       ],
       "tips": "各 BU 独立招聘可分别投递；上海岗位集中在淘天集团与国际数字商业。",
-      "channelUrl": "https://talent.alibaba.com"
+      "channelUrl": "https://talent.alibaba.com",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://talent.alibaba.com/campus/position-list?keyword=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://talent.alibaba.com/campus/position-list?keyword=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "美团",
@@ -88,7 +118,17 @@
         "深圳"
       ],
       "tips": "美团笔试有固定场次，错过需等下一批；建议正式批开启后第一批投递。",
-      "channelUrl": "https://campus.meituan.com"
+      "channelUrl": "https://campus.meituan.com",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://campus.meituan.com/jobs?keyword=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://campus.meituan.com/jobs?keyword=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "京东",
@@ -109,7 +149,17 @@
         "深圳"
       ],
       "tips": "TET 管理培训生提前批 7 月 31 日截止，意向管培方向者立即投递；正式批开启早，可作为秋招「练手+保底」首选。",
-      "channelUrl": "https://campus.jd.com"
+      "channelUrl": "https://campus.jd.com",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://campus.jd.com/#/jobs?keywords=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://campus.jd.com/#/jobs?keywords=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "拼多多",
@@ -128,7 +178,17 @@
         "上海（总部，绝大多数岗位）"
       ],
       "tips": "2027 届罕见地开放了秋招提前批（7 月中旬已开网申），建议尽快投递；总部在上海，对定位上海的求职者岗位密度最高；薪资高但需评估工作强度。",
-      "channelUrl": "https://careers.pinduoduo.com"
+      "channelUrl": "https://careers.pinduoduo.com",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://careers.pinduoduo.com/campus/grad?keyword=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://careers.pinduoduo.com/campus/grad?keyword=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "网易",
@@ -150,7 +210,17 @@
         "深圳（少量）"
       ],
       "tips": "对游戏方向感兴趣的产品/运营候选人，网易提前批值得第一时间投递。",
-      "channelUrl": "https://campus.163.com"
+      "channelUrl": "https://campus.163.com",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://campus.163.com/app/index?keyword=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://campus.163.com/app/index?keyword=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "快手",
@@ -171,7 +241,17 @@
         "深圳（少量）"
       ],
       "tips": "商业化与电商产品岗是近年增量方向，相关实习经历加分明显。",
-      "channelUrl": "https://campus.kuaishou.cn"
+      "channelUrl": "https://campus.kuaishou.cn",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://campus.kuaishou.cn/recruit/campus/e/#/campus/job-list?keyword=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://campus.kuaishou.cn/recruit/campus/e/#/campus/job-list?keyword=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "小红书",
@@ -190,7 +270,17 @@
         "上海（总部，绝大多数岗位）"
       ],
       "tips": "总部上海，对上海求职者非常友好；面试常考「给某品类做增长方案」类案例题。",
-      "channelUrl": "https://job.xiaohongshu.com"
+      "channelUrl": "https://job.xiaohongshu.com",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://job.xiaohongshu.com/campus?keyword=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://job.xiaohongshu.com/campus?keyword=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "米哈游",
@@ -209,7 +299,17 @@
         "上海（总部）"
       ],
       "tips": "上海游戏岗天花板之一；简历中务必体现游戏理解深度与二次元内容积累。",
-      "channelUrl": "https://campus.mihoyo.com"
+      "channelUrl": "https://campus.mihoyo.com",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://jobs.mihoyo.com/#/campus/position?jobTypeName=%E4%BA%A7%E5%93%81%E7%AD%96%E5%88%92%E7%B1%BB"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://jobs.mihoyo.com/#/campus/position?jobTypeName=%E8%BF%90%E8%90%A5%E7%B1%BB"
+        }
+      ]
     },
     {
       "name": "宝洁 P&G",
@@ -229,7 +329,17 @@
         "上海（部分职能）"
       ],
       "tips": "宝洁八大问需提前准备 STAR 结构故事库；测评一年内只能考一次，务必认真对待。",
-      "channelUrl": "https://www.pgcareers.com"
+      "channelUrl": "https://www.pgcareers.com",
+      "jobLinks": [
+        {
+          "label": "品牌管理（近产品）",
+          "url": "https://www.pgcareers.com/global/zh/search-results?keywords=Brand"
+        },
+        {
+          "label": "销售/运营方向",
+          "url": "https://www.pgcareers.com/global/zh/search-results?keywords=Sales"
+        }
+      ]
     },
     {
       "name": "联合利华",
@@ -248,7 +358,17 @@
         "上海（中国总部）"
       ],
       "tips": "中国区总部在上海，市场营销管培是产品/运营背景候选人的对口选择。",
-      "channelUrl": "https://careers.unilever.com"
+      "channelUrl": "https://careers.unilever.com",
+      "jobLinks": [
+        {
+          "label": "市场营销方向",
+          "url": "https://careers.unilever.com/search-jobs/marketing/34155/1"
+        },
+        {
+          "label": "客户发展/运营",
+          "url": "https://careers.unilever.com/search-jobs/customer%20development/34155/1"
+        }
+      ]
     },
     {
       "name": "欧莱雅",
@@ -267,7 +387,17 @@
         "上海（中国总部）"
       ],
       "tips": "有抖音/天猫电商实习经历者在电商管培方向优势明显。",
-      "channelUrl": "https://careers.loreal.com"
+      "channelUrl": "https://careers.loreal.com",
+      "jobLinks": [
+        {
+          "label": "市场营销方向",
+          "url": "https://careers.loreal.com/zh_CN/jobs/SearchJobs/marketing"
+        },
+        {
+          "label": "运营方向",
+          "url": "https://careers.loreal.com/zh_CN/jobs/SearchJobs/operations"
+        }
+      ]
     },
     {
       "name": "汇丰 HSBC",
@@ -288,7 +418,17 @@
         "深圳（少量）"
       ],
       "tips": "想去香港的候选人重点关注；需提前准备英文简历与 IANG 签证政策了解。",
-      "channelUrl": "https://www.hsbc.com/careers/students-and-graduates"
+      "channelUrl": "https://www.hsbc.com/careers/students-and-graduates",
+      "jobLinks": [
+        {
+          "label": "Graduate 项目检索",
+          "url": "https://www.hsbc.com/careers/students-and-graduates/find-a-programme"
+        },
+        {
+          "label": "实习/暑期项目",
+          "url": "https://www.hsbc.com/careers/students-and-graduates/find-a-programme"
+        }
+      ]
     },
     {
       "name": "比亚迪",
@@ -308,7 +448,17 @@
         "上海（销售/品牌部分岗位）"
       ],
       "tips": "开启早、给 offer 快，适合作为秋招早期保底；海外运营岗是产品运营背景的增量机会。",
-      "channelUrl": "https://job.byd.com"
+      "channelUrl": "https://job.byd.com",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://job.byd.com.cn/portal/pc/#/school/schoolList?keyword=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://job.byd.com.cn/portal/pc/#/school/schoolList?keyword=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "蔚来 NIO",
@@ -328,7 +478,17 @@
         "深圳（区域少量）"
       ],
       "tips": "总部在上海，用户产品/用户运营方向与互联网背景高度契合。",
-      "channelUrl": "https://nio.jobs.feishu.cn"
+      "channelUrl": "https://nio.jobs.feishu.cn",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://nio.jobs.feishu.cn/campus/?keywords=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://nio.jobs.feishu.cn/campus/?keywords=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "理想汽车",
@@ -348,7 +508,17 @@
         "上海（研发/设计部分岗位）"
       ],
       "tips": "薪资对标互联网大厂，智能化产品岗适合有 AI 认知的产品候选人。",
-      "channelUrl": "https://job.lixiang.com"
+      "channelUrl": "https://job.lixiang.com",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://li.jobs.feishu.cn/campus/?keywords=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://li.jobs.feishu.cn/campus/?keywords=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "小鹏汽车",
@@ -369,7 +539,17 @@
         "深圳（部分岗位）"
       ],
       "tips": "27 届全球校招 7 月已开启可投递；出海业务扩张中，海外运营岗对英语好的运营候选人是机会。",
-      "channelUrl": "https://xiaopeng.jobs.feishu.cn"
+      "channelUrl": "https://xiaopeng.jobs.feishu.cn",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://xiaopeng.jobs.feishu.cn/campus/?keywords=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://xiaopeng.jobs.feishu.cn/campus/?keywords=%E8%BF%90%E8%90%A5"
+        }
+      ]
     },
     {
       "name": "特斯拉 Tesla",
@@ -389,7 +569,17 @@
         "深圳（销售体系）"
       ],
       "tips": "无统一校招节奏，官网岗位要常刷；实习转正是重要通道。",
-      "channelUrl": "https://www.tesla.cn/careers"
+      "channelUrl": "https://www.tesla.cn/careers",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://www.tesla.cn/careers/search/?query=product&country=CN"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://www.tesla.cn/careers/search/?query=operations&country=CN"
+        }
+      ]
     },
     {
       "name": "小米汽车",
@@ -410,7 +600,17 @@
         "深圳（部分岗位）"
       ],
       "tips": "汽车+手机生态联动是面试高频话题；米粉背景与社区运营经验加分。",
-      "channelUrl": "https://hr.xiaomi.com"
+      "channelUrl": "https://hr.xiaomi.com",
+      "jobLinks": [
+        {
+          "label": "产品岗直投",
+          "url": "https://hr.xiaomi.com/campus/positions?keyword=%E4%BA%A7%E5%93%81"
+        },
+        {
+          "label": "运营岗直投",
+          "url": "https://hr.xiaomi.com/campus/positions?keyword=%E8%BF%90%E8%90%A5"
+        }
+      ]
     }
   ],
   "timeline": [
