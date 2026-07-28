@@ -110,20 +110,48 @@
         return '<span class="city-tag' + (hot ? " hot" : "") + '">' + esc(city) + "</span>";
       }).join("");
 
-      // 产品/运营岗直投链接（真实 <a>，与整卡跳转互不干扰）
-      var jobLinksHtml = "";
-      if (c.jobLinks && c.jobLinks.length) {
-        jobLinksHtml =
-          '<div class="job-links">' +
-          c.jobLinks.map(function (j) {
-            var ju = safeUrl(j.url);
-            if (!ju) return "";
-            return (
-              '<a class="job-link" href="' + esc(ju) + '" target="_blank" rel="noopener noreferrer" ' +
-                'aria-label="' + esc(c.name) + " " + esc(j.label) + '">' +
-                esc(j.label) + " ↗</a>"
-            );
-          }).join("") +
+      // 岗位直投区：优先渲染抓取到的真实岗位（按分类分组，base 沪/港）
+      var jobsHtml = "";
+      var hasRealJobs = c.jobCategories && c.jobCategories.some(function (g) { return g.jobs && g.jobs.length; });
+      if (hasRealJobs) {
+        jobsHtml =
+          '<div class="jobcats">' +
+            '<div class="jobcats-head">岗位直投<em>base 上海/香港 · 抓取于 ' + esc(c.jobsFetchedAt || DATA.lastUpdated) + "</em></div>" +
+            c.jobCategories.map(function (g, gi) {
+              if (!g.jobs || !g.jobs.length) return "";
+              return (
+                '<div class="jobcat">' +
+                  '<span class="jobcat-name p' + gi + '">' + esc(g.name) + "</span>" +
+                  '<ul class="jobcat-list">' +
+                  g.jobs.map(function (j) {
+                    var ju = safeUrl(j.url);
+                    if (!ju) return "";
+                    return (
+                      '<li><a class="job-link item" href="' + esc(ju) + '" target="_blank" rel="noopener noreferrer">' +
+                        '<span class="jl-city">' + esc(j.city) + "</span>" + esc(j.title) + " ↗</a></li>"
+                    );
+                  }).join("") +
+                  "</ul>" +
+                "</div>"
+              );
+            }).join("") +
+          "</div>";
+      } else if (c.jobLinks && c.jobLinks.length) {
+        // 兜底：官网筛选入口（该公司官网暂无法直接抓取具体岗位）
+        jobsHtml =
+          '<div class="jobcats">' +
+            '<div class="jobcats-head">岗位直投<em>官网筛选入口（暂无沪/港岗位抓取源）</em></div>' +
+            '<div class="job-links">' +
+            c.jobLinks.map(function (j) {
+              var ju = safeUrl(j.url);
+              if (!ju) return "";
+              return (
+                '<a class="job-link" href="' + esc(ju) + '" target="_blank" rel="noopener noreferrer" ' +
+                  'aria-label="' + esc(c.name) + " " + esc(j.label) + '">' +
+                  esc(j.label) + " ↗</a>"
+              );
+            }).join("") +
+            "</div>" +
           "</div>";
       }
 
@@ -136,13 +164,12 @@
           "<dl>" +
             "<dt>开启时间</dt><dd class=\"mono\">" + esc(c.openDate) + "</dd>" +
             "<dt>截止时间</dt><dd class=\"mono\">" + esc(c.deadline) + "</dd>" +
-            "<dt>投递渠道</dt><dd>" + esc(c.channel) + jobLinksHtml + "</dd>" +
+            "<dt>投递渠道</dt><dd>" + esc(c.channel) + "</dd>" +
             "<dt>产品/运营岗位</dt><dd>" + esc(c.positions) + "</dd>" +
-            "<dt>需求量</dt><dd>" + esc(c.demand) + "</dd>" +
             "<dt>能力要求</dt><dd>" + esc(c.skills) + "</dd>" +
-            "<dt>薪资范围</dt><dd>" + esc(c.salary) + "</dd>" +
             "<dt>笔试/面试流程</dt><dd>" + esc(c.process) + "</dd>" +
           "</dl>" +
+          jobsHtml +
           '<div class="city-tags">' + cityTags + "</div>" +
           '<p class="tips">' + esc(c.tips) + "</p>" +
           '<div class="card-cta"><span>去官方投递 →</span></div>' +
