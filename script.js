@@ -103,14 +103,32 @@
       return true;
     });
 
-    var html = list.map(function (c) {
+    var html = list.map(function (c, idx) {
       var url = safeUrl(c.channelUrl);
       var cityTags = c.cities.map(function (city) {
         var hot = ["上海", "深圳", "香港"].some(function (k) { return city.indexOf(k) >= 0; });
         return '<span class="city-tag' + (hot ? " hot" : "") + '">' + esc(city) + "</span>";
       }).join("");
+
+      // 产品/运营岗直投链接（真实 <a>，与整卡跳转互不干扰）
+      var jobLinksHtml = "";
+      if (c.jobLinks && c.jobLinks.length) {
+        jobLinksHtml =
+          '<div class="job-links">' +
+          c.jobLinks.map(function (j) {
+            var ju = safeUrl(j.url);
+            if (!ju) return "";
+            return (
+              '<a class="job-link" href="' + esc(ju) + '" target="_blank" rel="noopener noreferrer" ' +
+                'aria-label="' + esc(c.name) + " " + esc(j.label) + '">' +
+                esc(j.label) + " ↗</a>"
+            );
+          }).join("") +
+          "</div>";
+      }
+
       return (
-        '<a class="company-card" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer" ' +
+        '<div class="company-card" data-url="' + esc(url) + '" tabindex="0" role="link" ' +
           'aria-label="' + esc(c.name) + '：前往官方投递页">' +
           '<div class="card-head"><h3>' + esc(c.name) + '</h3>' +
           '<span class="badge cat-' + esc(c.category) + '">' + esc(c.category) + "</span></div>" +
@@ -118,7 +136,7 @@
           "<dl>" +
             "<dt>开启时间</dt><dd class=\"mono\">" + esc(c.openDate) + "</dd>" +
             "<dt>截止时间</dt><dd class=\"mono\">" + esc(c.deadline) + "</dd>" +
-            "<dt>投递渠道</dt><dd>" + esc(c.channel) + "</dd>" +
+            "<dt>投递渠道</dt><dd>" + esc(c.channel) + jobLinksHtml + "</dd>" +
             "<dt>产品/运营岗位</dt><dd>" + esc(c.positions) + "</dd>" +
             "<dt>需求量</dt><dd>" + esc(c.demand) + "</dd>" +
             "<dt>能力要求</dt><dd>" + esc(c.skills) + "</dd>" +
@@ -128,12 +146,28 @@
           '<div class="city-tags">' + cityTags + "</div>" +
           '<p class="tips">' + esc(c.tips) + "</p>" +
           '<div class="card-cta"><span>去官方投递 →</span></div>' +
-        "</a>"
+        "</div>"
       );
     }).join("");
 
-    document.getElementById("companyList").innerHTML =
+    var listEl = document.getElementById("companyList");
+    listEl.innerHTML =
       html || '<p style="color:#66727E">没有符合筛选条件的公司。</p>';
+
+    // 整卡点击跳官方投递页；点击内部岗位直投链接时不触发整卡跳转
+    if (!listEl.dataset.bound) {
+      listEl.dataset.bound = "1";
+      listEl.addEventListener("click", function (e) {
+        if (e.target.closest(".job-link")) return; // 岗位链接自行处理
+        var card = e.target.closest(".company-card");
+        if (card && card.dataset.url) window.open(card.dataset.url, "_blank", "noopener");
+      });
+      listEl.addEventListener("keydown", function (e) {
+        if (e.key !== "Enter" || e.target.closest(".job-link")) return;
+        var card = e.target.closest(".company-card");
+        if (card && card.dataset.url) window.open(card.dataset.url, "_blank", "noopener");
+      });
+    }
   }
 
   // ---------- 时间线 ----------
@@ -150,6 +184,17 @@
   }
 
   // ---------- 对比表格（整行可点击） ----------
+  function rowJobLinks(c) {
+    if (!c.jobLinks || !c.jobLinks.length) return "";
+    return c.jobLinks.map(function (j) {
+      var ju = safeUrl(j.url);
+      if (!ju) return "";
+      var short = j.label.indexOf("产品") >= 0 || j.label.indexOf("品牌") >= 0 ? "产品" : "运营";
+      return '<a class="job-link sm" href="' + esc(ju) + '" target="_blank" rel="noopener noreferrer" ' +
+             'aria-label="' + esc(c.name) + " " + esc(j.label) + '">' + short + " ↗</a>";
+    }).join("");
+  }
+
   function renderTable() {
     var tbody = document.querySelector("#compareTable tbody");
     tbody.innerHTML = DATA.companies.map(function (c, i) {
@@ -162,7 +207,7 @@
           '<td class="mono">' + esc(c.deadline) + "</td>" +
           "<td>" + esc(c.salary) + "</td>" +
           "<td>" + esc(c.cities.join("、")) + "</td>" +
-          '<td><span class="row-go">去投递 →</span></td>' +
+          '<td class="td-go"><span class="row-go">官网 →</span>' + rowJobLinks(c) + "</td>" +
         "</tr>"
       );
     }).join("");
@@ -173,11 +218,12 @@
       if (url) window.open(url, "_blank", "noopener");
     }
     tbody.addEventListener("click", function (e) {
+      if (e.target.closest(".job-link")) return; // 岗位直投链接自行处理
       var tr = e.target.closest("tr[data-idx]");
       if (tr) go(tr);
     });
     tbody.addEventListener("keydown", function (e) {
-      if (e.key !== "Enter") return;
+      if (e.key !== "Enter" || e.target.closest(".job-link")) return;
       var tr = e.target.closest("tr[data-idx]");
       if (tr) go(tr);
     });
