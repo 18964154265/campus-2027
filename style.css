@@ -440,3 +440,81 @@ td.mono { font-family: var(--mono); font-size: .78rem; }
   margin-left: 6px;
 }
 .td-go { white-space: nowrap; }
+
+/* ============ 岗位直投分类区（站牌分层） ============ */
+.jobcats {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: #F6F8F7;
+  border: 1px solid #E2E8E5;
+  border-radius: 6px;
+  position: relative;
+  z-index: 2;
+}
+.jobcats-head {
+  font-weight: 700;
+  font-size: .82rem;
+  color: #26323C;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.jobcats-head em {
+  font-style: normal;
+  font-weight: 400;
+  font-size: .7rem;
+  color: #8A95A0;
+  font-family: var(--mono);
+}
+.jobcat { margin-bottom: 8px; }
+.jobcat:last-child { margin-bottom: 0; }
+.jobcat-name {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 700;
+  font-family: var(--mono);
+  padding: 1px 8px;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  color: #fff;
+  background: #66727E;
+}
+.jobcat-name.p0 { background: var(--go); }      /* 商家/用户运营：优先 */
+.jobcat-name.p1 { background: var(--wait); }    /* 产品/策略运营 */
+.jobcat-name.p2 { background: #66727E; }        /* 内容运营 */
+.jobcat-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.job-link.item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 4px 8px;
+  border-style: solid;
+  border-color: #D8DFDB;
+  color: #26323C;
+  background: #fff;
+  font-weight: 500;
+  font-size: .76rem;
+  line-height: 1.35;
+}
+.job-link.item:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.jl-city {
+  flex: none;
+  font-family: var(--mono);
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--go);
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  padding: 0 4px;
+}
+.job-link.item:hover .jl-city { color: #9FE8C8; }
