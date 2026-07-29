@@ -21,8 +21,8 @@
     });
   }
   function $(id) { return document.getElementById(id); }
-  function show(el) { el.hidden = false; }
-  function hide(el) { el.hidden = true; }
+  function show(el) { el.hidden = false; el.style.display = "flex"; }
+  function hide(el) { el.hidden = true; el.style.display = "none"; }
   function fmtDate(iso) {
     if (!iso) return "—";
     var d = new Date(iso);
@@ -77,6 +77,7 @@
   var authMode = "login";
 
   function openAuthModal(mode, hint) {
+    hide($("favModal")); // 互斥：同一时间只允许一个弹窗
     authMode = mode || "login";
     updateAuthModalUI();
     $("authMsg").textContent = hint || "";
@@ -189,6 +190,7 @@
   var favJob = null;
 
   function openFavModal(job) {
+    hide($("authModal")); // 互斥：同一时间只允许一个弹窗
     favJob = job;
     $("favJobDesc").innerHTML =
       '<span class="fjd-company">' + esc(job.company) + "</span> · " + esc(job.title) +
