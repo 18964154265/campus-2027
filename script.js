@@ -127,8 +127,12 @@
                     var ju = safeUrl(j.url);
                     if (!ju) return "";
                     return (
-                      '<li><a class="job-link item" href="' + esc(ju) + '" target="_blank" rel="noopener noreferrer">' +
-                        '<span class="jl-city">' + esc(j.city) + "</span>" + esc(j.title) + " ↗</a></li>"
+                      '<li class="jobcat-li"><a class="job-link item" href="' + esc(ju) + '" target="_blank" rel="noopener noreferrer">' +
+                        '<span class="jl-city">' + esc(j.city) + "</span>" + esc(j.title) + " ↗</a>" +
+                        '<button class="fav-btn" type="button" title="收藏此岗位" aria-label="收藏此岗位"' +
+                          ' data-company="' + esc(c.name) + '" data-title="' + esc(j.title) + '"' +
+                          ' data-city="' + esc(j.city) + '" data-category="' + esc(g.name) + '"' +
+                          ' data-url="' + esc(ju) + '">☆</button></li>'
                     );
                   }).join("") +
                   "</ul>" +
@@ -185,12 +189,12 @@
     if (!listEl.dataset.bound) {
       listEl.dataset.bound = "1";
       listEl.addEventListener("click", function (e) {
-        if (e.target.closest(".job-link")) return; // 岗位链接自行处理
+        if (e.target.closest(".job-link") || e.target.closest(".fav-btn")) return; // 岗位链接/收藏按钮自行处理
         var card = e.target.closest(".company-card");
         if (card && card.dataset.url) window.open(card.dataset.url, "_blank", "noopener");
       });
       listEl.addEventListener("keydown", function (e) {
-        if (e.key !== "Enter" || e.target.closest(".job-link")) return;
+        if (e.key !== "Enter" || e.target.closest(".job-link") || e.target.closest(".fav-btn")) return;
         var card = e.target.closest(".company-card");
         if (card && card.dataset.url) window.open(card.dataset.url, "_blank", "noopener");
       });
