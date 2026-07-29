@@ -157,6 +157,11 @@
   sb.auth.getSession().then(function (res) {
     currentUser = res.data.session ? res.data.session.user : null;
     renderAuthArea();
+    // 未登录时，进站先弹一次登录/注册弹窗（可关闭跳过；同一标签页会话内只弹一次）
+    if (!currentUser && !sessionStorage.getItem("authPrompted")) {
+      sessionStorage.setItem("authPrompted", "1");
+      openAuthModal("login", "登录后可创建收藏夹、收藏心仪岗位（点 × 可先跳过）");
+    }
   });
 
   // ---------- 收藏按钮（全站事件委托） ----------
