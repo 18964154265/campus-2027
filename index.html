@@ -18,9 +18,14 @@
           <h1>秋招发车榜</h1>
           <p class="board-sub">错过一班，等一年。上海 · 深圳 · 香港</p>
         </div>
-        <div class="board-clock">
-          <span class="clock-label">数据更新于</span>
-          <span class="clock-time" id="lastUpdated">— — —</span>
+        <div class="board-right">
+          <div class="board-clock">
+            <span class="clock-label">数据更新于</span>
+            <span class="clock-time" id="lastUpdated">— — —</span>
+          </div>
+          <div class="auth-area" id="authArea">
+            <button class="auth-btn" id="loginBtn" type="button">登录 / 注册</button>
+          </div>
         </div>
       </div>
 
@@ -40,6 +45,7 @@
     <button class="tab" data-tab="compare">对比总表</button>
     <button class="tab" data-tab="windows">投递窗口</button>
     <button class="tab" data-tab="city">城市站台</button>
+    <button class="tab tab-profile" data-tab="profile" id="profileTab">👤 个人主页</button>
   </nav>
 
   <main class="container">
@@ -93,7 +99,52 @@
     <section id="panel-city" class="panel">
       <div id="cityList" class="city-list"></div>
     </section>
+
+    <!-- 个人主页 -->
+    <section id="panel-profile" class="panel">
+      <div id="profileContent"><!-- auth.js 渲染 --></div>
+    </section>
   </main>
+
+  <!-- 登录/注册弹窗 -->
+  <div class="modal-mask" id="authModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="登录或注册">
+      <button class="modal-close" id="authModalClose" type="button" aria-label="关闭">×</button>
+      <div class="auth-switch">
+        <button class="auth-mode active" data-mode="login" type="button">登录</button>
+        <button class="auth-mode" data-mode="register" type="button">注册</button>
+      </div>
+      <form id="authForm">
+        <label class="field">
+          <span>邮箱</span>
+          <input type="email" id="authEmail" required autocomplete="email" placeholder="you@example.com">
+        </label>
+        <label class="field">
+          <span>密码</span>
+          <input type="password" id="authPassword" required minlength="6" autocomplete="current-password" placeholder="至少 6 位">
+        </label>
+        <p class="auth-msg" id="authMsg"></p>
+        <button class="auth-submit" id="authSubmit" type="submit">登 录</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 收藏到收藏夹弹窗 -->
+  <div class="modal-mask" id="favModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="收藏岗位">
+      <button class="modal-close" id="favModalClose" type="button" aria-label="关闭">×</button>
+      <h3 class="modal-title">收藏岗位</h3>
+      <p class="fav-job-desc" id="favJobDesc"></p>
+      <div class="fav-folder-list" id="favFolderList"><!-- 收藏夹列表 --></div>
+      <form class="fav-new" id="favNewForm">
+        <input type="text" id="favNewName" maxlength="30" placeholder="新建收藏夹，如：上海优先投">
+        <button type="submit">新建并收藏</button>
+      </form>
+      <p class="auth-msg" id="favMsg"></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
   <footer class="site-footer">
     <div class="container">
@@ -102,5 +153,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="auth.js"></script>
 </body>
 </html>
