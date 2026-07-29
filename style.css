@@ -703,3 +703,6 @@ td.mono { font-family: var(--mono); font-size: .78rem; }
   .profile-head { flex-direction: column; }
   .tab-profile { margin-left: 0; }
 }
+
+/* 修复：hidden 属性必须优先于 display:flex，否则弹窗无法隐藏 */
+.modal-mask[hidden] { display: none !important; }
