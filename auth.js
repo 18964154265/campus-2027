@@ -33,7 +33,7 @@
     var map = [
       [/invalid login credentials/i, "邮箱或密码不正确"],
       [/user already registered/i, "该邮箱已注册，请直接登录"],
-      [/email not confirmed/i, "邮箱尚未验证，请先到邮箱点击确认链接"],
+      [/email not confirmed/i, "注册需要验证邮箱——请到 Supabase 后台关闭「Confirm email」"],
       [/password should be at least/i, "密码至少需要 6 位"],
       [/rate limit/i, "操作太频繁，请稍后再试"],
       [/duplicate key.*favorites_user_id_name/i, "已存在同名收藏夹"],
@@ -111,26 +111,28 @@
     msg.className = "auth-msg";
     msg.textContent = authMode === "login" ? "登录中…" : "注册中…";
 
-    var p = authMode === "login"
-      ? sb.auth.signInWithPassword({ email: email, password: password })
-      : sb.auth.signUp({ email: email, password: password });
+    function finish() { closeAuthModal(); }
 
-    p.then(function (res) {
+    if (authMode === "login") {
+      sb.auth.signInWithPassword({ email: email, password: password }).then(function (res) {
+        btn.disabled = false;
+        if (res.error) { msg.className = "auth-msg error"; msg.textContent = friendlyErr(res.error); return; }
+        finish();
+      });
+      return;
+    }
+
+    // 注册：后台若未开启邮箱确认，会直接返回会话并自动登录
+    sb.auth.signUp({ email: email, password: password }).then(function (res) {
       btn.disabled = false;
-      if (res.error) {
-        msg.className = "auth-msg error";
-        msg.textContent = friendlyErr(res.error);
-        return;
-      }
-      if (authMode === "register" && res.data && res.data.user && !res.data.session) {
-        // 开了邮箱确认：需要去邮箱点链接
-        msg.className = "auth-msg info";
-        msg.textContent = "注册成功！确认邮件已发送到 " + email + "，请点击邮件中的链接完成验证后再登录。";
-        authMode = "login";
-        updateAuthModalUI();
-        return;
-      }
-      closeAuthModal();
+      if (res.error) { msg.className = "auth-msg error"; msg.textContent = friendlyErr(res.error); return; }
+      if (res.data && res.data.user && res.data.session) { finish(); return; }
+      // 没拿到会话：可能因为后台仍开启了邮箱确认。再用同一凭据尝试直接登录一次
+      sb.auth.signInWithPassword({ email: email, password: password }).then(function (r2) {
+        btn.disabled = false;
+        if (r2.error) { msg.className = "auth-msg error"; msg.textContent = friendlyErr(r2.error); return; }
+        finish();
+      });
     });
   });
 
