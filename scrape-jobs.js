@@ -108,6 +108,74 @@ async function feishuAdapter(host) {
   };
 }
 
+// ---------- 小米（飞书系自建域 mioffice）----------
+// 校招门户 website-path=campus 目前返回 0（2027 届岗位尚未进搜索索引），
+// 自动回退到 internship 门户（应届实习/转正实习，面向 2027 届）
+async function xiaomiCollect() {
+  const host = "xiaomi.jobs.f.mioffice.cn";
+
+  async function tokenFor(refPath) {
+    const r = await fetch(`https://${host}/api/v1/csrf/token`, {
+      method: "POST",
+      headers: { "User-Agent": UA, Referer: `https://${host}/${refPath}/position` },
+    });
+    const cookies = (r.headers.getSetCookie ? r.headers.getSetCookie() : [])
+      .map(c => c.split(";")[0]).join("; ");
+    return { tok: (await r.json()).data.token, cookies };
+  }
+
+  async function search(portal, kw) {
+    const { tok, cookies } = await tokenFor(portal);
+    const res = await fetch(`https://${host}/api/v1/search/job/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": UA,
+        Referer: `https://${host}/${portal}/position`,
+        "x-csrf-token": tok,
+        "website-path": portal,
+        Cookie: cookies,
+      },
+      body: JSON.stringify({
+        keyword: kw, limit: 100, offset: 0,
+        portal_type: 3, portal_entrance: 1,
+        job_category_id_list: [], location_code_list: [],
+        subject_id_list: [], recruitment_id_list: [],
+      }),
+    });
+    const d = await res.json();
+    return (d.data && d.data.job_post_list) || [];
+  }
+
+  async function harvest(portal) {
+    const pool = [];
+    const seen = new Set();
+    for (const kw of SEARCH_KWS) {
+      const list = await search(portal, kw);
+      await sleep(400);
+      for (const j of list) {
+        if (seen.has(j.id)) continue;
+        const cityNames = [
+          j.city_info && j.city_info.name,
+          ...(Array.isArray(j.city_list) ? j.city_list.map(c => c.name) : []),
+        ].filter(Boolean).join(" ");
+        if (!CITY_RE.test(cityNames)) continue;
+        seen.add(j.id);
+        pool.push({
+          title: (j.title || "").trim(),
+          city: pickCity(cityNames),
+          url: `https://${host}/${portal}/position/${j.id}/detail`,
+        });
+      }
+    }
+    return pool;
+  }
+
+  let pool = await harvest("campus");
+  if (pool.length === 0) pool = await harvest("internship");
+  return buildCats(pool);
+}
+
 // ---------- 腾讯校招 join.qq.com ----------
 async function tencentCollect() {
   async function search(kw) {
@@ -152,6 +220,7 @@ async function tencentCollect() {
     "腾讯": tencentCollect,
     "蔚来 NIO": await feishuAdapter("nio.jobs.feishu.cn").catch(() => null),
     "小鹏汽车": await feishuAdapter("xiaopeng.jobs.feishu.cn").catch(() => null),
+    "小米汽车": xiaomiCollect,
   };
 
   for (const c of data.companies) {
